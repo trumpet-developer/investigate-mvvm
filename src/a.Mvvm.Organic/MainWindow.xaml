@@ -8,7 +8,40 @@
         Title="MainWindow"
         Height="273"
         Width="427">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="First Name:" />
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 x:Name="FirstName_TextBox"
+                 Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Last Name:" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 x:Name="LastName_TextBox"
+                 Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Full Name:" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   x:Name="FullName_TextBox"
+                   Text="{Binding FullName}" />
     </Grid>
 </Window>

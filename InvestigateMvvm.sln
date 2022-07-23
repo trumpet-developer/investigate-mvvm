@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "a.Mvvm.Organic", "src\a.Mvvm.Organic\a.Mvvm.Organic.csproj", "{20D63B92-A85E-4E47-B472-E8B3F044FDAF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "a.Mvvm.Organic.Tests", "src\a.Mvvm.Organic.Tests\a.Mvvm.Organic.Tests.csproj", "{2A76FC72-AE8F-47DE-8891-F04E956B777D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20D63B92-A85E-4E47-B472-E8B3F044FDAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20D63B92-A85E-4E47-B472-E8B3F044FDAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20D63B92-A85E-4E47-B472-E8B3F044FDAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20D63B92-A85E-4E47-B472-E8B3F044FDAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A76FC72-AE8F-47DE-8891-F04E956B777D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A76FC72-AE8F-47DE-8891-F04E956B777D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A76FC72-AE8F-47DE-8891-F04E956B777D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A76FC72-AE8F-47DE-8891-F04E956B777D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

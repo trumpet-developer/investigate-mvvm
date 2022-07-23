@@ -19,6 +19,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -43,5 +46,18 @@
                    Grid.Column="1"
                    x:Name="FullName_TextBox"
                    Text="{Binding FullName}" />
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                x:Name="Submit_Button"
+                Content="Submit"
+                Command="{Binding SubmitCommand, Mode=OneWay}" />
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   x:Name="Status_TextBox"
+                   Text="{Binding Status}" />
     </Grid>
 </Window>

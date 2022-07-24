@@ -8,6 +8,7 @@
     - [ViewModelクラスの作成](#viewmodelクラスの作成)
     - [INotifyPropertyChangedの実装](#inotifypropertychangedの実装)
     - [View-ViewModelのデータバインディング](#view-viewmodelのデータバインディング)
+    - [ICommandの実装](#icommandの実装)
 
 ## INotifyPropertyChangedによるデータバインディング
 
@@ -200,4 +201,95 @@ sequenceDiagram
          Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 <TextBlock x:Name="FullName_TextBox"
            Text="{Binding FullName}" />
+```
+
+### ICommandの実装
+
+- View：`MainWindow`  
+- ViewModel:`MainWindowViewModel`
+- 
+
+```mermaid
+classDiagram
+  MainWindow --> MainWindowViewModel : creation
+  INotifyPropertyChanged <|.. MainWindowViewModel : realization
+  class MainWindow {
+    <<Window>>
+    ~TextBox FirstName_TextBox
+    ~TextBox LastName_TextBox
+    ~TextBox FullName_TextBox
+  }
+  class MainWindowViewModel {
+    <<INotifyPropertyChanged>>
+    +PropertyChangedEventHandler PropertyChanged
+    +string FirstName
+    +string LastName
+    +string FullName
+    +Command SubmitCommand
+    -User user
+    -void SubmitCommandExecute()
+    -bool SubmitCommandCanExecute()
+    #void OnPropertyChanged(string propertyName)
+  }
+  class INotifyPropertyChanged {
+    +PropertyChangedEventHandler PropertyChanged
+  }
+  ICommand <|.. Command : realization
+  MainWindowViewModel --> Command
+  class ICommand {
+    +EventHandler? CanExecuteChanged
+    +void Execute(object? parameter)
+    +bool CanExecute(object? parameter)
+  }
+  class Command {
+    <<ICommand>>
+    +EventHandler CanExecuteChanged
+    +void Execute(object parameter)
+    +bool CanExecute(object parameter)
+    -void RaiseCanExecuteChanged()
+  }
+  MainWindowViewModel --> User
+  IUserRepository <|.. UserRepository : realization
+  UserRepository --|> User
+  class User {
+    +string FirstName
+    +string LastName
+  }
+  class UserRepository {
+    +User Create(User)
+  }
+  class IUserRepository {
+    +User Create(User)
+  }
+```
+
+```mermaid
+sequenceDiagram
+  actor User
+  participant MainWindow
+  participant FirstName_TextBox
+  participant Submit_Button
+  participant MainWindowViewModel
+  participant SubmitCommand
+  User ->> MainWindow : Show
+  activate MainWindow
+  MainWindow ->> MainWindowViewModel : Create
+  activate MainWindowViewModel
+  MainWindowViewModel ->> SubmitCommand : Create
+  activate SubmitCommand
+  
+  User ->> FirstName_TextBox : Input text
+  FirstName_TextBox ->> MainWindowViewModel : Set property
+  MainWindowViewModel ->> SubmitCommand : Raise CanExecuteChanged
+  rect rgb(232,209,157)
+  SubmitCommand -) Submit_Button : CanExecuteChanged
+  Submit_Button ->> SubmitCommand : CanExecute command
+  SubmitCommand -->> Submit_Button : ture or false
+  end
+
+  User ->> Submit_Button : Click
+  rect rgb(232,209,157)
+  Submit_Button ->> SubmitCommand : Execute command
+  end
+
 ```
